@@ -1,4 +1,4 @@
-# Expense Tracker - Installment 2
+# Expense Tracker - Installment 3: The Tracker Does Math
 # Author: John Michael Martinez
 # A personal expense tracker that takes user input and calculates expenses.
 
@@ -23,29 +23,45 @@ name = input("What's your name? ")
 print(f"Welcome, {name}! Let's log two expenses.")
 print()
 
+#Subtotal
+subtotal = 0
+
 # Expense Input 1
 item1 = input("First expense? ")
 amount1 = float(input("Amount? "))
+subtotal += amount1
 
 # Expense Input 2
 item2 = input("Second expense? ")
 amount2 = float(input("Amount? "))
-print()
+subtotal += amount2
 
-#Calculations
-# Calculate Total
-total = amount1 + amount2
-# Calculate Average
-average = total / 2
+# Calculations
+average = subtotal / 2
+
+# Tax
+tax_percent = int(input("Tax rate %? "))
+tax = subtotal * tax_percent / 100
+total = subtotal + tax
+
+# Budget
+budget = float(input("Your budget? "))
+over_budget = total > budget
+left = budget - total
+print()
 
 # Summary
 print("-" * 40)
 print("SUMMARY")
-print(f"  - {item1}:\t\t${amount1}")
-print(f"  - {item2}:\t\t${amount2}")
-print(f"{'Total spent:'}\t\t${total}")
-print(f"{'Average:'}\t\t${average}")
+print(f"  - {item1}:\t${amount1}")
+print(f"  - {item2}:\t${amount2}")
+print(f"Subtotal:\t${subtotal}")
+print(f"Average:\t${average}")
+print(f"Tax ({tax_percent}.0%):\t${tax}")
+print(f"Grand total:\t${total}")
+print(f"Over budget?\t{over_budget}")
+print(f"Left in budget:\t${left}")
 
 # Footer
 print("-" * 40)
-print("Made by: John Michael Martinez  |  Installment 2")
+print("Made by: John Michael Martinez  |  Installment 3")
